@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Person from './Person';
+import GridHeader from './GridHeader';
 
 class PersonGrid extends Component {
     constructor(props) {
@@ -42,11 +43,20 @@ class PersonGrid extends Component {
         )}
 
     filterByFiled(field) {
-        console.log(field)
+        const compare = (field, reverse = false) => (a, b) => {
+            if (reverse === true) {
+                return (a[field] > b[field]) ? -1 : (a[field] < b[field]) ? 1 : 0;
+            }
+                return (a[field] < b[field]) ? -1 : (a[field] > b[field]) ? 1 : 0;
+            }
+
+        this.setState({
+            data: (this.state.data[0][field] === this.state.data.sort(compare(field))[0][field]) 
+                ? this.state.data.sort(compare(field, true)) : this.state.data.sort(compare(field))
+        });
     }
 
     render() {
-
         const { error, isLoaded, data } = this.state;
 
         if (error) {
@@ -56,25 +66,23 @@ class PersonGrid extends Component {
         } else {
             return (
                 <div className='container'>
-                    <Person 
-                        id='id' 
-                        firstName='name'
-                        lastName='surname'
-                        email='email'
-                        phone='phone'
+                    <GridHeader
+                        values = {['id', 'firstName', 'lastName', 'email', 'phone']}
                         chooseActiveClick={this.filterByFiled}
                     />
-                    {data.map(item => (
-                        <Person 
-                            key={item.id} 
-                            id={item.id} 
-                            firstName={item.firstName} 
-                            lastName={item.lastName}
-                            email={item.email}
-                            phone={item.phone} 
-                            chooseActiveClick={this.activeSelector}
-                        />
-                    ))}
+                    {
+                        data.map((item, index) => (
+                            <Person 
+                                key={index} 
+                                id={item.id} 
+                                firstName={item.firstName} 
+                                lastName={item.lastName}
+                                email={item.email}
+                                phone={item.phone} 
+                                chooseActiveClick={this.activeSelector}
+                            />
+                        ))
+                    }
                 </div>
             )
         }

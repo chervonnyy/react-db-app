@@ -2,26 +2,32 @@ li {
   list-style: none;
 }
 
+.app {
+  display: grid;
+  grid-template-columns: 2fr 1fr ;
+}
+
 .container {
   display: grid;
+  width: 100%;
+  height: 500px;
+  overflow: scroll; 
 }
 
 .person {
   display: grid;
-  width: 100%;
-  max-width: 900px;
-  margin: auto;
+  align-items: center;
+  height: 40px;
+  background: lightgrey;
   grid-template-columns: 1fr 1fr 1fr 2fr 1fr;
   cursor: pointer;
 }
 
-.person:first-child {
-  font-style: bold;
-  color: red;
-  border-bottom: 1px solid black;
-  cursor: pointer;
+.person:nth-child(2n) {
+  background: grey;
 }
 
-.active-person {
-  margin: 20px auto;
+.grid-header{
+  color: red;
+  border-bottom: 1px solid black;
 }

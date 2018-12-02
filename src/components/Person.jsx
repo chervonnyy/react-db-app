@@ -7,9 +7,8 @@ class Person extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(event) {
-        const res = isNaN(this.props.id) ? event.target : this.props.id;
-        this.props.chooseActiveClick(res);
+    handleClick() {
+        this.props.chooseActiveClick(this.props.id);
     }
 
 

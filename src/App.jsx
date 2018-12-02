@@ -25,7 +25,7 @@ class App extends Component {
         return (
             <div className="app">
                 < PersonGrid 
-                    url = "http://www.filltext.com/?rows=5&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}"
+                    url = "http://www.filltext.com/?rows=200&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}"
                     selectActiveUsers={this.onChangeActiveUser}
                 />
                 < ActivePerson active = {this.state.active} />
