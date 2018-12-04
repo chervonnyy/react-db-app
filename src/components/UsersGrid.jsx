@@ -19,12 +19,25 @@ class UsersGrid extends Component {
     }
 
     componentDidUpdate(prevProps) {
+
+        const findMatches = user => {
+            return (user.firstName.toLowerCase().includes(this.props.searchValue.toLowerCase()) 
+                || user.lastName.toLowerCase().includes(this.props.searchValue.toLowerCase()))
+        }
+
         if (this.props.url !== prevProps.url) {
             this.load(this.props.url);
             this.setState({
                 isLoaded: false
             });
-          }
+        }
+        if (this.props.searchValue > prevProps.searchValue) {
+            this.setState({
+                data: this.state.data.filter(findMatches)
+            })
+        } else if (this.props.searchValue < prevProps.searchValue) {
+            this.load(this.props.url);
+        }
     }
 
     load(url) {
@@ -70,11 +83,11 @@ class UsersGrid extends Component {
         const { error, isLoaded, data } = this.state;
 
         if (this.props.url === null) {
-            return  <div className='container'><h2>Please select data</h2></div>;
+            return  <div className='container message'><h2>Choose a data source</h2></div>;
         } else if (error) {
-            return  <div className='container'><h2>Error: {error.message}</h2></div>;
+            return  <div className='container message'><h2>Error: {error.message}</h2></div>;
         } else if (!isLoaded) {
-            return  <div className='container'><h2>Loading...</h2></div>;
+            return  <div className='container message'><h2>Loading...</h2></div>;
         } else {
             return (
                 <div className='container'>
@@ -103,6 +116,7 @@ class UsersGrid extends Component {
 
 UsersGrid.propTypes = {
     url: PropTypes.string,
+    searchValue: PropTypes.string,
     selectActiveUsers: PropTypes.func
 }
 

@@ -11,26 +11,29 @@ li {
   margin: 30px;
   display: grid;
   grid-template-columns: 3fr 2fr;
-  grid-template-rows: 1fr 1fr;
-  grid-gap: 30px;
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 25px;
   height: 450px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .container {
   display: grid;
   width: 100%;
   overflow: scroll; 
-  grid-row: 1 / 3;
+  grid-row: 1 / 4;
+  align-content: start;
+
 }
 
-.container h2 {
+.message {
+  align-content: center;
   text-align: center;
-  align-self: center;
 }
 
 .user {
   display: grid;
+  align-self: start;
   align-items: center;
   height: 40px;
   background: #557d90;
@@ -66,7 +69,9 @@ li {
 .grid-header {
   border-bottom: 1px solid black;
   padding: 10px;
-  font-size: 24px;
+  font-weight: bolder;
+  color: #cea059;
+  text-shadow: 1px 1px 1px black;
 }
 
 .source {
@@ -93,4 +98,17 @@ li {
 
 .source-button:hover {
   background: #bbc1a8;
+}
+
+.search-form {
+  text-align: center;
+  font-size: 24px;
+}
+
+.search-form input {
+  width: 80%;
+  height: 30px;
+  border: 1px solid grey;
+  font-size: 24px;
+  padding-left: 10px;
 }
