@@ -1,17 +1,17 @@
 import React from 'react';
 
-function ActivePerson(props) {
+function SelectedUser(props) {
 
     if (props.active == null) {
-        return <h2>Select a user</h2>
+        return <div className="selected-user"><h2>Select a user</h2></div>
     }
 
     const { firstName, lastName, description, address } = props.active;
 
     return(
-        <div className="active-person">
+        <div className="selected-user">
             <p><b>Выбран пользователь: </b>{firstName} {lastName}</p>
-            <textarea value={description}></textarea>
+            <p>{description}</p>
             <p>
             Адрес проживания: <b>{address.streetAddress}</b><br/>
             Город: <b>{address.city}</b><br/>
@@ -23,4 +23,4 @@ function ActivePerson(props) {
 
 }
 
-export default ActivePerson;
+export default SelectedUser;

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import Person from './Person';
+import UserRow from './UserRow';
 import GridHeader from './GridHeader';
 
-class PersonGrid extends Component {
+class UsersGrid extends Component {
     constructor(props) {
         super(props);
 
@@ -15,11 +15,19 @@ class PersonGrid extends Component {
 
         this.activeSelector = this.activeSelector.bind(this);
         this.filterByFiled = this.filterByFiled.bind(this);
-
     }
 
-    componentDidMount() {
-        fetch(this.props.url)
+    componentDidUpdate(prevProps) {
+        if (this.props.url !== prevProps.url) {
+            this.load(this.props.url);
+            this.setState({
+                isLoaded: false
+            });
+          }
+    }
+
+    load(url) {
+        fetch(url)
         .then(res => res.json())
         .then(
             (result) => {
@@ -57,12 +65,15 @@ class PersonGrid extends Component {
     }
 
     render() {
+
         const { error, isLoaded, data } = this.state;
 
-        if (error) {
-            return <div>Error: {error.message}</div>;
+        if (this.props.url === null) {
+            return  <div className='container'><h2>Please select data</h2></div>;
+        } else if (error) {
+            return  <div className='container'><h2>Error: {error.message}</h2></div>;
         } else if (!isLoaded) {
-            return <div>Loading...</div>;
+            return  <div className='container'><h2>Loading...</h2></div>;
         } else {
             return (
                 <div className='container'>
@@ -72,7 +83,7 @@ class PersonGrid extends Component {
                     />
                     {
                         data.map((item, index) => (
-                            <Person 
+                            <UserRow 
                                 key={index} 
                                 id={item.id} 
                                 firstName={item.firstName} 
@@ -89,4 +100,4 @@ class PersonGrid extends Component {
     }
 }
 
-export default PersonGrid;
+export default UsersGrid;

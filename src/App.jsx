@@ -1,34 +1,45 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import PersonGrid from './components/PersonGrid';
-import ActivePerson from './components/ActivePerson';
+import UsersGrid from './components/UsersGrid';
+import SelectedUser from './components/SelectedUser';
+import SourceButtons from './components/SourceButtons';
 
 class App extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            active: null
+            active: null,
+            url: null
         };
 
-        this.onChangeActiveUser = this.onChangeActiveUser.bind(this); 
+        this.selectUser = this.selectUser.bind(this); 
+        this.setUrlData = this.setUrlData.bind(this); 
     }
 
-    onChangeActiveUser(active) {
+    selectUser(active) {
         this.setState({
             active
         });
     }
 
+    setUrlData(url) {
+        this.setState({
+            url
+        });
+    }
+
+
     render() {
         return (
             <div className="app">
-                < PersonGrid 
-                    url = "http://www.filltext.com/?rows=200&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}"
-                    selectActiveUsers={this.onChangeActiveUser}
+                <UsersGrid 
+                    url = {this.state.url}
+                    selectActiveUsers = {this.selectUser}
                 />
-                < ActivePerson active = {this.state.active} />
+                <SelectedUser active = {this.state.active} />
+                <SourceButtons chooseDataSet = {this.setUrlData} />
             </div>
         );
     }

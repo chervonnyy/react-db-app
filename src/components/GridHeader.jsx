@@ -1,24 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class GridHeader extends Component {
-    constructor(props) {
-        super(props);
+function GridHeader(props) {
 
-        this.handleClick = this.handleClick.bind(this);
+    function handleClick(e) {
+        props.chooseActiveClick(e.target.innerHTML);
     }
 
-    handleClick(e) {
-        this.props.chooseActiveClick(e.target.innerHTML);
-    }
-
-
-    render() {
-        return(
-            <ul className="person grid-header" onClick={this.handleClick}>
-                {this.props.values.map((val, index) => <li key={index}>{val}</li>)}
-            </ul>
-        )
-    }  
+    return(
+        <ul className="user grid-header" onClick={handleClick}>
+            {props.values.map((val, index) => <li key={index}>{val}</li>)}
+        </ul>
+    ) 
 }
 
 export default GridHeader;
