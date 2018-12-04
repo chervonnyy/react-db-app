@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import UserRow from './UserRow';
 import GridHeader from './GridHeader';
@@ -98,6 +99,11 @@ class UsersGrid extends Component {
             )
         }
     }
+}
+
+UsersGrid.propTypes = {
+    url: PropTypes.string,
+    selectActiveUsers: PropTypes.func
 }
 
 export default UsersGrid;

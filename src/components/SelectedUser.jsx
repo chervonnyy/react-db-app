@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function SelectedUser(props) {
 
@@ -21,6 +22,10 @@ function SelectedUser(props) {
         </div>
     )
 
+}
+
+SelectedUser.propTypes = {
+    active: PropTypes.object
 }
 
 export default SelectedUser;

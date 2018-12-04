@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function GridHeader(props) {
 
@@ -11,6 +12,11 @@ function GridHeader(props) {
             {props.values.map((val, index) => <li key={index}>{val}</li>)}
         </ul>
     ) 
+}
+
+GridHeader.propTypes = {
+    values: PropTypes.arrayOf(PropTypes.string),
+    chooseActiveClick: PropTypes.func
 }
 
 export default GridHeader;

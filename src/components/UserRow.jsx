@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function UserRow(props) {
 
@@ -17,5 +18,15 @@ function UserRow(props) {
     )
 
 }
+
+UserRow.propTypes = {
+    id: PropTypes.number,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    email: PropTypes.string,
+    phone: PropTypes.string,
+    chooseActiveClick: PropTypes.func
+}
+
 
 export default UserRow;

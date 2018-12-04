@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function SourceButtons(props) {
     function chooseFirstData() {
@@ -15,6 +16,10 @@ function SourceButtons(props) {
                 <div className="source-button" onClick={chooseSecondData}>load 1000 users</div>
             </div>
         )  
+}
+
+SourceButtons.propTypes = {
+    chooseDataSet: PropTypes.func
 }
 
 export default SourceButtons;
